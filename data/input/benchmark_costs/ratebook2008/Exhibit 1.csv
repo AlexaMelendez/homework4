@@ -1,0 +1,137 @@
+Exhibit 1.  Relative Factors for CMS-HSS ESRD Model,,
+,,
+Table 1-1.  Relative Factors for CMS-HCC ESRD Dialysis Model1,,
+Risk factors are relative to average total Medicare expenditures per capita for dialysis patients.2,,
+,,
+Variable,Disease Group,Relative Factors
+Age/Sex Groups,,
+       Female,,
+       0-34 Years,,0.699
+      35-44 Years ,,0.699
+      45-54 Years ,,0.715
+      55-59 Years ,,0.746
+      60-64 Years ,,0.749
+      65-69 Years ,,0.813
+      70-74 Years ,,0.813
+      75-79 Years ,,0.831
+      80-84 Years ,,0.850
+      85 Years or Over ,,0.872
+,,
+      Male,,
+      0-34 Years ,,0.614
+     35-44 Years ,,0.650
+     45-54 Years ,,0.675
+     55-59 Years ,,0.699
+     60-64 Years ,,0.722
+     65-69 Years ,,0.776
+     70-74 Years ,,0.776
+     75-79 Years ,,0.790
+     80-84 Years ,,0.790
+     85 Years or Over ,,0.826
+,,
+Disease Group Factors,,
+HCC1,HIV/AIDS,0.235
+HCC2,Septicemia/Shock,0.073
+HCC5,Opportunistic Infections,0.051
+HCC7,Metastatic Cancer and Acute Leukemia,0.189
+HCC8,"Lung, Upper Digestive Tract, and Other Severe Cancers",0.189
+HCC9,"Lymphatic, Head and Neck, Brain, and Other Major Cancers",0.160
+HCC10,"Breast, Prostate, Colorectal and Other Cancers and Tumors",0.058
+HCC15,Diabetes with Renal or Peripheral Circulatory Manifestation,0.080
+HCC16,Diabetes with Neurologic or Other Specified Manifestation,0.080
+HCC17,Diabetes with Acute Complications,0.080
+HCC18,Diabetes with Ophthalmologic or Unspecified Manifestation,0.080
+HCC19,Diabetes without Complication,0.079
+HCC21,Protein-Calorie Malnutrition,0.050
+HCC25,End-Stage Liver Disease,0.259
+HCC26,Cirrhosis of Liver,0.095
+HCC27,Chronic Hepatitis,0.051
+HCC31,Intestinal Obstruction/Perforation,0.057
+HCC32,Pancreatic Disease,0.084
+HCC33,Inflammatory Bowel Disease,0.088
+HCC37,Bone/Joint/Muscle Infections/Necrosis,0.115
+HCC38,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.077
+HCC44,Severe Hematological Disorders3,0.000
+HCC45,Disorders of Immunity,0.113
+HCC51,Drug/Alcohol Psychosis4,0.000
+HCC52,Drug/Alcohol Dependence4,0.000
+HCC54,Schizophrenia,0.179
+HCC55,"Major Depressive, Bipolar, and Paranoid Disorders",0.123
+HCC67,"Quadriplegia, Other Extensive Paralysis",0.229
+HCC68,Paraplegia,0.229
+HCC69,Spinal Cord Disorders/Injuries,0.148
+HCC70,Muscular Dystrophy3,0.000
+HCC71,Polyneuropathy,0.056
+HCC72,Multiple Sclerosis,0.087
+HCC73,Parkinson's and Huntington's Diseases,0.038
+HCC74,Seizure Disorders and Convulsions,0.094
+HCC75,"Coma, Brain Compression/Anoxic Damage",0.201
+HCC77,Respirator Dependence/Tracheostomy Status,0.349
+HCC78,Respiratory Arrest,0.156
+HCC79,Cardio-Respiratory Failure and Shock,0.088
+HCC80,Congestive Heart Failure,0.086
+HCC81,Acute Myocardial Infarction,0.107
+HCC82,Unstable Angina and Other Acute Ischemic Heart Disease,0.107
+HCC83,Angina Pectoris/Old Myocardial Infarction,0.027
+HCC92,Specified Heart Arrhythmias,0.061
+HCC95,Cerebral Hemorrhage,0.058
+HCC96,Ischemic or Unspecified Stroke,0.058
+HCC100,Hemiplegia/Hemiparesis,0.088
+HCC101,Cerebral Palsy and Other Paralytic Syndromes,0.040
+HCC104,Vascular Disease with Complications,0.169
+HCC105,Vascular Disease,0.059
+HCC107,Cystic Fibrosis,0.078
+HCC108,Chronic Obstructive Pulmonary Disease,0.078
+HCC111,Aspiration and Specified Bacterial Pneumonias,0.123
+HCC112,"Pneumococcal Pneumonia, Emphysema, Lung Abscess",0.051
+HCC119,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage3,0.000
+HCC130,Dialysis Status7,0.000
+HCC131,Renal Failure7,0.000
+HCC132,Nephritis7,0.000
+HCC148,Decubitus Ulcer of Skin,0.182
+HCC149,"Chronic Ulcer of Skin, Except Decubitus",0.110
+HCC150,Extensive Third-Degree Burns5,0.088
+HCC154,Severe Head Injury,0.201
+HCC155,Major Head Injury,0.022
+HCC157,Vertebral Fractures without Spinal Cord Injury,0.035
+HCC158,Hip Fracture/Dislocation,0.054
+HCC161,Traumatic Amputation,0.073
+HCC164,Major Complications of Medical Care and Trauma3,0.000
+HCC174,Major Organ Transplant Status,0.199
+HCC176,Artificial Openings for Feeding or Elimination,0.062
+HCC177,"Amputation Status, Lower Limb/Amputation Complications",0.073
+,,
+Medicaid Interactions With Age and Sex,,
+Medicaid_Female_Disabled,,0.051
+Medicaid_Female_Aged,,0.031
+Medicaid_Male_Disabled,,0.043
+Medicaid_Male_Aged,,0.069
+,,
+Originally Disabled Interactions With Sex,,
+"Female, 65+, Originally Entitled due to ESRD/ w or wo Disability",,-0.054
+"Male, 65+, Originally Entitled due to ESRD/ w or wo Disability",,-0.047
+"Female, 65+, Originally Entitled due to Disability (non-ESRD)",,0.056
+"Male, 65+, Originally Entitled due to Disability (non-ESRD)",,0.032
+,,
+Disabled/Disease Interactions,,
+D_HCC5,Disabled_Opportunistic Infections,0.081
+D_HCC44,Disabled_Severe Hematological Disorders,0.050
+D_HCC45,Disabled_Disorders of Immunity4,0.000
+D_HCC51,Disabled_Drug/Alcohol Psychosis ,0.190
+D_HCC52,Disabled_Drug/Alcohol Dependence,0.190
+D_HCC107,Disabled_Cystic Fibrosis5,0.149
+,,
+Disease Interactions6,,
+INT1,DM_CHF,0.020
+INT2,DM_CVD,0.051
+INT3,CHF_COPD4,0.000
+INT4,COPD_CVD_CAD3,0.000
+,,
+1This model is used for those enrollees who have a full year of base year claims data,,
+"2Mean Year 2003 Total Expenditures=$60,471.  Mean is over all dialysis patients including those with Medicare as secondary payer.",,
+,,
+3Coefficients of variables with unconstrained coefficients less than 0 were constrained to equal 0.,,
+4Coefficients of variables with coefficients with t-statistics < 1.0 were constrained to equal 0.,,
+5Coefficient was constrained to equal coefficient from the CMS-HCC Aged-Disabled Community Model (2002-2003 Calibration).,,
+"6The interaction DM_CHF_RF (where RF = renal failure) is the same in this population as DM_CHF because all sample members have renal failure.  Hence, this three-way interaction is not included.",,
+7These coefficients are set to zero because beneficiaries on whom the model is calibrated have renal failure and are in dialysis status.,,

@@ -1,0 +1,132 @@
+Variable,Disease Group,Community Factors,Institutional Factors
+Female
+0-34 Years,,0.187,1.026
+35-44 Years ,,0.206,0.884
+45-54 Years ,,0.275,0.888
+55-59 Years ,,0.333,0.943
+60-64 Years ,,0.411,0.943
+65-69 Years ,,0.299,0.971
+70-74 Years ,,0.368,0.931
+75-79 Years ,,0.457,0.835
+80-84 Years ,,0.544,0.775
+85-89 Years ,,0.637,0.704
+90-94 Years ,,0.761,0.614
+95 Years or Over ,,0.771,0.457
+Male
+0-34 Years ,,0.12,1.03
+35-44 Years ,,0.164,0.871
+45-54 Years ,,0.217,0.871
+55-59 Years ,,0.249,0.978
+60-64 Years ,,0.389,1.015
+65-69 Years ,,0.328,1.221
+70-74 Years ,,0.413,1.154
+75-79 Years ,,0.517,1.143
+80-84 Years ,,0.597,1.087
+85-89 Years ,,0.692,1.001
+90-94 Years ,,0.834,0.932
+95 Years or Over ,,0.98,0.743
+Medicaid and Originally Disabled Interactions with Age and Sex
+Medicaid_Female_Aged,,0.179,0.091
+Medicaid_Female_Disabled,,0.131,0.091
+Medicaid_Male_Aged,,0.166,0.091
+Medicaid_Male_Disabled,,0.077,0.091
+Originally Disabled_Female,,0.204,0.023
+Originally Disabled_Male,,0.168,0.023
+Disease Coefficients,Description Label
+HCC1,HIV/AIDS,0.945,0.967
+HCC2,Septicemia/Shock,0.759,0.764
+HCC5,Opportunistic Infections,0.3,0.288
+HCC7,Metastatic Cancer and Acute Leukemia,2.276,0.824
+HCC8,"Lung, Upper Digestive Tract, and Other Severe Cancers",1.053,0.47
+HCC9,"Lymphatic, Head and Neck, Brain, and Other Major Cancers",0.794,0.368
+HCC10,"Breast, Prostate, Colorectal and Other Cancers and Tumors",0.208,0.182
+HCC15,Diabetes with Renal or Peripheral Circulatory Manifestation (1),0.508,0.459
+HCC16,Diabetes with Neurologic or Other Specified Manifestation (1),0.408,0.459
+HCC17,Diabetes with Acute Complications (1),0.339,0.459
+HCC18,Diabetes with Ophthalmologic or Unspecified Manifestation (1),0.259,0.459
+HCC19,Diabetes without Complication (1),0.162,0.248
+HCC21,Protein-Calorie Malnutrition,0.856,0.374
+HCC25,End-Stage Liver Disease,0.978,0.654
+HCC26,Cirrhosis of Liver,0.406,0.384
+HCC27,Chronic Hepatitis,0.406,0.384
+HCC31,Intestinal Obstruction/Perforation,0.311,0.345
+HCC32,Pancreatic Disease,0.403,0.309
+HCC33,Inflammatory Bowel Disease,0.241,0.205
+HCC37,Bone/Joint/Muscle Infections/Necrosis,0.535,0.497
+HCC38,Rheumatoid Arthritis and Inflammatory Connective Tissue Disease,0.346,0.215
+HCC44,Severe Hematological Disorders,1.015,0.493
+HCC45,Disorders of Immunity,0.912,0.427
+HCC51,Drug/Alcohol Psychosis (3),0.274,0
+HCC52,Drug/Alcohol Dependence (3),0.274,0
+HCC54,Schizophrenia,0.524,0.351
+HCC55,"Major Depressive, Bipolar, and Paranoid Disorders",0.353,0.293
+HCC67,"Quadriplegia, Other Extensive Paralysis",1.011,0.434
+HCC68,Paraplegia,0.993,0.434
+HCC69,Spinal Cord Disorders/Injuries,0.558,0.225
+HCC70,Muscular Dystrophy (3),0.395,0
+HCC71,Polyneuropathy,0.327,0.225
+HCC72,Multiple Sclerosis,0.599,0.145
+HCC73,Parkinson's and Huntington's Diseases,0.592,0.092
+HCC74,Seizure Disorders and Convulsions,0.267,0.177
+HCC75,"Coma, Brain Compression/Anoxic Damage (3)",0.415,0
+HCC77,Respirator Dependence/Tracheostomy Status,1.867,1.559
+HCC78,Respiratory Arrest,1.082,1.235
+HCC79,Cardio-Respiratory Failure and Shock,0.578,0.445
+HCC80,Congestive Heart Failure,0.41,0.228
+HCC81,Acute Myocardial Infarction,0.359,0.424
+HCC82,Unstable Angina and Other Acute Ischemic Heart Disease,0.284,0.424
+HCC83,Angina Pectoris/Old Myocardial Infarction,0.244,0.29
+HCC92,Specified Heart Arrhythmias,0.293,0.207
+HCC95,Cerebral Hemorrhage,0.324,0.179
+HCC96,Ischemic or Unspecified Stroke,0.265,0.179
+HCC100,Hemiplegia/Hemiparesis,0.437,0.039
+HCC101,Cerebral Palsy and Other Paralytic Syndromes (3),0.18,0
+HCC104,Vascular Disease with Complications,0.61,0.482
+HCC105,Vascular Disease,0.316,0.165
+HCC107,Cystic Fibrosis,0.399,0.631
+HCC108,Chronic Obstructive Pulmonary Disease,0.399,0.359
+HCC111,Aspiration and Specified Bacterial Pneumonias,0.703,0.573
+HCC112,"Pneumococcal Pneumonia, Emphysema, Lung Abscess",0.249,0.181
+HCC119,Proliferative Diabetic Retinopathy and Vitreous Hemorrhage,0.252,0.497
+HCC130,Dialysis Status,1.349,1.718
+HCC131,Renal Failure,0.368,0.388
+HCC132,Nephritis,0.125,0.253
+HCC148,Decubitus Ulcer of Skin,1.153,0.485
+HCC149,"Chronic Ulcer of Skin, Except Decubitus",0.449,0.241
+HCC150,Extensive Third-Degree Burns (3),1.416,0
+HCC154,Severe Head Injury (3),0.415,0
+HCC155,Major Head Injury (3),0.106,0
+HCC157,Vertebral Fractures without Spinal Cord Injury,0.443,0.161
+HCC158,Hip Fracture/Dislocation (3),0.429,0
+HCC161,Traumatic Amputation,0.678,0.26
+HCC164,Major Complications of Medical Care and Trauma,0.296,0.309
+HCC174,Major Organ Transplant Status,0.705,0.92
+HCC176,Artificial Openings for Feeding or Elimination,0.662,0.841
+HCC177,"Amputation Status, Lower Limb / Amputation Complications",0.678,0.26
+Disabled/Disease Interactions
+D_HCC5,Disabled_Opportunistic Infections,0.623,1.016
+D_HCC44,Disabled_Severe Hematological Disorders,1.036,0.362
+D_HCC51,Disabled_Drug/Alcohol Psychosis ,0.729,0.299
+D_HCC52,Disabled_Drug/Alcohol Dependence,0.31,0.299
+D_HCC107,Disabled_Cystic Fibrosis (3),1.097,-
+Disease Interactions
+INT1,DM_CHF (2),0.154,0.125
+INT2,DM_CVD,0.102,0.028
+INT3,CHF_COPD,0.219,0.194
+INT4,COPD_CVD_CAD,0.173,0.071
+INT5,"RF_CHF (2,3)",0.231,-
+INT6,RF_CHF_DM (2),0.477,0.358
+
+NOTES:
+(1) Includes Type I or Type II Diabetes Mellitus.
+"(2) Beneficiaries with the three-way interaction RF*CHF*DM are excluded from the two-way interactions DM*CHF and RF*CHF. Thus, the three-way interaction term RF*CHF*DM is not additive to the two-way interaction terms DM*CHF and RF*CHF. Rather, it is hierarchical to, and excludes these interaction terms. A beneficiary with all three conditions is not ""credited"" with the two-way interactions. All other interaction terms are additive."
+(3) HCC or disease interaction excluded from institutional model because estimated coefficient less than 0 or t-statistic less than 1.0.
+"The 2007 denominator of $7,463.14 used to calculate both the community and institutional factors is the national predicted average annual cost under the model."
+DM is diabetes mellitus (HCCs 15-19).
+CHF is congestive heart failure (HCC 80).
+COPD is chronic obstructive pulmonary disease (HCC 108).
+"CVD is cerebrovascular disease (HCCs 95, 96, 100, and 101)."
+CAD is coronary artery disease (HCCs 81-83).
+RF is renal failure (HCC 131).
+SOURCE:  RTI International analysis of 2004/2005 Medicare 5% sample.
+SOURCE:  RTI International analysis of 2004/2005 Medicare 100% institutional sample.

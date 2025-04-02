@@ -1,0 +1,45 @@
+Table 1-2.  CMS-HCC Dialysis Model for New Enrollees1,
+,
+Variable,Relative Factors
+Age/Sex Groups,
+         Female,
+         0-34 Years,0.912
+        35-44 Years ,0.943
+        45-54 Years ,0.974
+        55-59 Years ,1.020
+        60-64 Years ,1.020
+        65-69 Years ,1.134
+        70-74 Years ,1.162
+        75-79 Years ,1.218
+        80-84 Years ,1.232
+        85 Years or Over,1.236
+,
+       Male,
+       0-34 Years ,0.754
+      35-44 Years ,0.894
+      45-54 Years ,0.911
+      55-59 Years ,0.959
+      60-64 Years ,0.977
+      65-69 Years ,1.090
+      70-74 Years ,1.118
+      75-79 Years ,1.151
+      80-84 Years ,1.151
+      85 Years or Over,1.191
+,
+Medicaid Interactions With Age and Sex,
+Medicaid_Female_Disabled,0.100
+Medicaid_Female_Aged,0.069
+Medicaid_Male_Disabled,0.087
+Medicaid_Male_Aged,0.114
+,
+Originally Disabled Interactions With Sex,
+"Originally Disabled_Female, Age Less than 65",0.237
+Originally Disabled_Female,0.237
+"Originally Disabled_Male, Age Less than 65",0.211
+Originally Disabled_Male,0.211
+,
+Notes:,
+1New enrollees are those enrollees who do not have a full year of base year claims data.,
+,
+"Mean Year 2003 Total Expenditures=$60,471.  Mean is over all dialysis patients including those with Medicare as secondary payer.",
+,

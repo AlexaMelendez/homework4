@@ -1,0 +1,36 @@
+Table 1-5.  List Hierarchies for the CMS-HCC Model,,
+,,
+DRAFT DISEASE HIERARCHIES ,,
+Hierarchical Condition Category (HCC),If the Disease Group is Listed in This Column… ,…Then Drop the Associated Disease Group(s) Listed in This Column
+,Disease Group Label ,
+5,Opportunistic Infections ,112
+7,Metastatic Cancer and Acute Leukemia ,"8,9,10 "
+8,"Lung, Upper Digestive Tract, and Other Severe Cancers","9, 10"
+9,"Lymphatic, Head and Neck, Brain and Other Major Cancers ",10
+15,Diabetes with Renal Manifestations or Peripheral Circulatory Manifestation ,"16,17,18,19 "
+16,Diabetes with Neurologic or Other Specified Manifestation,"17,18,19"
+17,Diabetes with Acute Complications ,"18,19 "
+18,Diabetes with Ophthalmologic or Unspecified Manifestations,19
+25,End-Stage Liver Disease ,"26,27 "
+26,Cirrhosis of Liver ,27
+51,Drug/Alcohol Psychosis ,52
+54,Schizophrenia ,55
+67,Quadriplegia/Other Extensive Paralysis ,"68,69,100,101,157 "
+68,Paraplegia ,"69,100,101,157"
+69,Spinal Cord Disorders/Injuries ,157
+77,Respirator Dependence/ Tracheostomy Status ,"78,79 "
+78,Respiratory Arrest,79
+81,Acute Myocardial Infarction ,"82,83 "
+82,Unstable Angina and Other Acute Ischemic Heart Disease,83
+95,Cerebral Hemorrhage ,96
+100,Hemiplegia/Hemiparesis ,101
+104,Vascular Disease with Complications ,"105,149"
+107,Cystic Fibrosis ,108
+111,Aspiration and Specified Bacterial Pneumonias ,112
+130,Dialysis Status ,"131,132"
+131,Renal Failure ,132
+148,Decubitus Ulcer of Skin ,149
+154,Severe Head Injury ,"75,155"
+161,Traumatic Amputation ,177
+"How Payments are Made with a Disease Hierarchy -- EXAMPLE: If a beneficiary triggers HCCs 148 (Decubitus Ulcer of the Skin) and 149 (Chronic Ulcer of Skin, Except Decubitus), then HCC 149 will be dropped. In other words, payment will always be associated with the HCC in column 1 if a HCC in column 3 also occurs during the same collection period. Therefore, the MA organization’s payment will be based on HCC 148 rather than HCC 149. ",,
+,,
