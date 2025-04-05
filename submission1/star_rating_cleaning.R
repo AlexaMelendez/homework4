@@ -1,13 +1,26 @@
+# Load packages
+library(tidyverse)
+install.packages("here")
+library(here)
+
+# Source variables using relative path
 source("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/Homework4/submission1/read_variables.R")
-## Assign yearly datasets and clean star rating information
 
-## 2008
-ma.path.2008a <- paste0("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/data/input/ma_star_ratings/2008/2008_Part_C_Report_Card_Master_Table_2009_11_30_data.csv")
+# 2008 data - using here()
+ma.path.2008a <- here("data", "input", "ma_star_ratings", "2008", 
+                     "2008_Part_C_Report_Card_Master_Table_2009_11_30_data.csv")
+
+# Verify file exists
+if(!file.exists(ma.path.2008a)) {
+  stop("2008 data file not found at: ", ma.path.2008a)
+}
+
+# Read file
 star.data.2008a <- read_csv(ma.path.2008a,
-                         skip=4,
-                         col_names=rating.vars.2008)
+                           skip = 4,
+                           col_names = rating.vars.2008)
 
-ma.path.2008b <- paste0("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/data/input/ma_star_ratings/2008/2008_Part_C_Report_Card_Master_Table_2009_11_30_domain.csv")
+ma.path.2008b <- paste0("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/Homework4/data/input/ma_star_ratings/2008/2008_Part_C_Report_Card_Master_Table_2009_11_30_domain.csv")
 star.data.2008b <- read_csv(ma.path.2008b,
                          skip=2,
                          col_names=c("contractid","contract_name","healthy","getting_care",
@@ -21,7 +34,7 @@ star.data.2008 <- (star.data.2008a %>% select(-new_contract)) %>%
   mutate(year=2008)
 
 ## 2009
-ma.path.2009a <- paste0("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/data/input/ma_star_ratings/2009/2009_Part_C_Report_Card_Master_Table_2009_11_30_stars.csv")
+ma.path.2009a <- paste0("C:/Users/melen/OneDrive/Documents/Econ_470/Homework 4/Homework4/data/input/ma_star_ratings/2009/2009_Part_C_Report_Card_Master_Table_2009_11_30_stars.csv")
 star.data.2009a <- read_csv(ma.path.2009a,
                          skip=4,
                          col_names=rating.vars.2009)
