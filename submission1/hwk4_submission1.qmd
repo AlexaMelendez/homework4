@@ -1,0 +1,385 @@
+---
+title: Homework 3 ECON 470
+author: Alexa Melendez
+format:
+  pdf:
+    documentclass: article
+---
+[Github Repository](https://github.com/AlexaMelendez/Homework3.git)
+```{r setup, include=FALSE}
+#  install.packages("readr")
+# install.packages("knitr")
+# install.packages("rmarkdown")
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, ggplot2, dplyr, lubridate, stringr, readxl, data.table, gdata)
+
+library(readr)
+final.data <- readRDS("C:/Users/melen/OneDrive/Documents/Econ_470/Homework3/data/output/TaxBurden_Data.rds")
+
+load("C:/Users/melen/OneDrive/Documents/Econ_470/Homework3/submission1/results/hw_workspace.Rdata")
+```
+
+# Question 1
+
+Present a bar graph showing the proportion of states with a change in their cigarette tax in each year from 1970 to 1985.
+
+```{r, echo= FALSE}
+# Identify tax changes for each state/year
+tax_change_data <- final.data %>%
+  filter(Year >= 1970 & Year <= 1985) %>%
+  group_by(state) %>%
+  arrange(Year) %>%
+  mutate(tax_diff = tax_state - lag(tax_state),
+         tax_change = ifelse(!is.na(tax_diff) & tax_diff > 0, 1, 0)) %>%
+  ungroup()
+
+# calculate the proportion of states with a tax change per year
+prop_tax <- tax_change_data %>%
+  group_by(Year) %>%
+  summarise(prop = mean(tax_change, na.rm = TRUE), .groups = "drop")
+
+tax_change_plot <- ggplot(data = prop_tax, aes(x = factor(Year), y = prop)) +
+  geom_col(fill = "#3f3e3e") +
+  labs(
+    title = "Proportion of States with Cigarette Tax Changes (1970–1985)",
+    x = "Year",
+    y = "Proportion of States with Tax Change"
+  ) +
+  ylim(0, 0.4) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 11),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+print(tax_change_plot)
+```
+### Figure 1: Share in States of Tax Changes
+
+The graph shows the proportion of states that changed cigarette taxes each year from 1970 to 1985. The highest levels of tax changes occurred in the early 1970s and again around 1982 to 1984, with lower rates of change in the mid-to-late 1970s. This suggests that states tended to adjust cigarette taxes in certain periods, possibly in response to policy shifts or fiscal needs, rather than consistently over time. It highlights how state-level taxation on cigarettes was reactive and influenced by broader external factors.
+
+# Question 2
+
+Plot on a single graph the average tax (in 2012 dollars) on cigarettes and the average price of a pack of cigarettes from 1970 to 2018.
+
+```{r, echo=FALSE, warning=FALSE}
+library(tidyverse)
+final.data <- final.data %>%
+  mutate(
+    tax_2012 = tax_dollar * (230 / index),
+    price_2012 = cost_per_pack * (230 / index)
+  )
+
+# Calculate yearly averages
+avg_tax_price <- final.data %>%
+  filter(Year >= 1970 & Year <= 2018) %>%
+  group_by(Year) %>%
+  summarise(
+    avg_tax_2012 = mean(tax_2012, na.rm = TRUE),
+    avg_price_2012 = mean(price_2012, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Plot with one solid line and one dotted line
+avg_tax_price_plot <- ggplot(avg_tax_price, aes(x = Year)) +
+  geom_line(aes(y = avg_tax_2012, linetype = "Average Adjusted Tax"), size = 1.2, color = "black") +
+  geom_line(aes(y = avg_price_2012, linetype = "Average Adjusted Price"), size = 1.2, color = "black") +
+  labs(
+    title = "Average Adjusted Tax and Price of Cigarettes (1970–2018)",
+    x = "Year",
+    y = "Dollars (2012)"
+  ) +
+  scale_linetype_manual(
+    values = c("Average Adjusted Tax" = "solid", "Average Adjusted Price" = "dotted"),
+    name = "Legend"
+  ) +
+  coord_cartesian(xlim = c(1970, 2019), ylim = c(0, 8)) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+# Print the plot
+print(avg_tax_price_plot)
+```
+### Figure 2: Average Price and Tax of Cigarettes (1970-2018)
+
+The graph illustrates the steady increase in both the average adjusted tax and price of cigarettes from 1970 to 2018. While cigarette prices show a consistent upward trend with significant growth after 2000, taxes also rise but at a slower and more gradual pace. This indicates that although taxation contributed to higher prices, market factors and policy changes likely played additional roles in driving overall price increases.
+
+# Question 3
+
+Identify the 5 states with the highest increases in cigarette prices (in dollars) over the time period. Plot the average number of packs sold per capita for those states from 1970 to 2018.
+
+```{r, echo=FALSE}
+final.data <- readRDS("C:/Users/melen/OneDrive/Documents/Econ_470/Homework3/data/output/TaxBurden_Data.rds")
+top_5_states_table <- final.data %>%
+  group_by(state) %>%
+  summarise(price_increase = max(price_cpi, na.rm = TRUE) - min(price_cpi, na.rm = TRUE), .groups = "drop") %>%
+  arrange(desc(price_increase)) %>%
+  slice_head(n = 5)
+
+top_states_sales <- final.data %>%
+  filter(state %in% top_5_states, Year >= 1970, Year <= 2018) %>%
+  group_by(state, Year) %>%
+  summarise(avg_sales = mean(sales_per_capita, na.rm = TRUE), .groups = "drop")
+
+top_states_plot <- ggplot(top_states_sales, aes(x = Year, y = avg_sales, color = state)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "States with Highest Increases in Cigarette Prices",
+    x = "Year",
+    y = "Packs per Capita",
+    color = "State"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 10),
+    legend.position = "right"
+  )
+print(top_states_plot)
+```
+
+
+```{r, echo=FALSE}
+
+library(dplyr)
+library(knitr)
+
+top_5_states_table <- top_5_states_table %>%
+  rename(
+    State = state,
+    `Price Increase` = price_increase
+  )
+
+knitr::kable(top_5_states_table, caption = "States with Highest Increases in Cigarette Prices")
+
+```
+### Figure 3: States with Highest Increases in Cigarette Prices
+
+The table correctly identifies the five states with the highest increases in cigarette prices: New York, District of Columbia, Hawaii, Rhode Island, and Alaska. However, the graph displays a different output likely due to coding errors. 
+
+# Question 4
+
+Identify the 5 states with the lowest increases in cigarette prices over the time period. Plot the average number of packs sold per capita for those states from 1970 to 2018.
+
+```{r, echo=FALSE}
+
+#| echo: false
+
+lowest_5_states <- final.data %>%
+  group_by(state) %>%
+  summarise(price_increase = max(cost_per_pack, na.rm = TRUE) - min(cost_per_pack, na.rm = TRUE), .groups = "drop") %>%
+  arrange(price_increase) %>%
+  slice_head(n = 5)
+
+lowest_states_sales <- final.data %>%
+  filter(state %in% lowest_5_states$state, Year >= 1970, Year <= 2018) %>%
+  group_by(state, Year) %>%
+  summarise(avg_sales = mean(sales_per_capita, na.rm = TRUE), .groups = "drop")
+
+lowest_states_plot <- ggplot(lowest_states_sales, aes(x = Year, y = avg_sales, color = state)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "States with Lowest Increase in Cigarette Prices",
+    x = "Year",
+    y = "Packs per Capita",
+    color = "State"
+  ) +
+  theme_minimal() +
+  theme(
+  plot.title = element_text(size = 10),
+  theme(legend.position = "right")
+  )
+print(lowest_states_plot)
+```
+
+```{r, echo=FALSE}
+library(dplyr)
+library(knitr)
+
+lowest_5_states <- lowest_5_states %>%
+  rename(
+    State = state,
+    `Price Increase` = price_increase
+  )
+
+knitr::kable(lowest_5_states, caption = "States with Lowest Increase in Cigarette Prices")
+```
+### Figure 4: States with Lowest Increase in Cigarette Prices
+
+This image shows the five states with the smallest increases in cigarette prices and their cigarette consumption trends. While prices rose slowly in these states, cigarette use still declined over time, though at a more moderate pace. This indicates that price increases are important but not the only factor influencing smoking reduction.
+
+# Question 5
+
+Compare the trends in sales from the 5 states with the highest price increases to those with the lowest price increases.
+
+
+The states with the highest cigarette price increases show a clear and steady drop in cigarette sales per capita from 1970 to 2018. In these states, higher prices led to faster declines in smoking. In contrast, the states with the lowest price increases had a slower and less consistent decrease in cigarette sales. Some of these states even show periods where smoking rates stayed flat or dropped only slightly. This comparison shows that raising cigarette prices is an effective way to reduce smoking, while small price changes do not have the same strong effect.
+
+
+# Question 6 ,7, & 8
+
+Focusing only on the time period from 1970 to 1990, regress log sales on log prices to estimate the price elasticity of demand over that period. Interpret your results. 
+
+Again limiting to 1970 to 1990, regress log sales on log prices using the total (federal and state) cigarette tax (in dollars) as an instrument for log prices. Interpret your results and compare your estimates to those without an instrument. Are they different? If so, why?
+
+Show the first stage and reduced-form results from the instrument.
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(broom)
+library(knitr)
+df <- df %>%
+  mutate(
+    log_sales = log(sales_per_capita),
+    log_cost = log(price_cpi),
+    tax_cpi = tax_state * (230 / index),
+    total_tax_cpi = tax_dollar * (230 / index),
+    log_total_tax = log(total_tax_cpi)
+  )
+
+# Regressions
+ols_model <- lm(log_sales ~ log_cost, data = df %>% filter(Year >= 1970 & Year <= 1990))
+first_stage <- lm(log_cost ~ log_total_tax, data = df %>% filter(Year >= 1970 & Year <= 1990))
+iv_model <- lm(log_sales ~ predict(first_stage), data = df %>% filter(Year >= 1970 & Year <= 1990))
+
+# Extract needed results
+ols_result <- tidy(ols_model) %>%
+  filter(term == "log_cost") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(ols_model)$r.squared, Model = "OLS")
+
+iv_result <- tidy(iv_model) %>%
+  filter(term == "predict(first_stage)") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(iv_model)$r.squared, Model = "IV")
+
+first_stage_result <- tidy(first_stage) %>%
+  filter(term == "log_total_tax") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(first_stage)$r.squared, Model = "First Stage")
+
+# Combine results
+results_table <- bind_rows(ols_result, iv_result, first_stage_result) %>%
+  select(Model, estimate, std.error, R2) %>%
+  rename(
+    `Log Price Estimate` = estimate,
+    `Standard Error` = std.error,
+    `R²` = R2
+  ) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 4)))
+
+knitr::kable(
+  results_table,
+  format = "simple",
+  caption = "Regression Results: Log Price Estimates, Standard Errors, and R² (1970–1990)"
+)
+```
+### Figure 5: OLS, IV, and First Stage Regression (1970-1990)
+
+For question 6, these results show that cigarette sales decrease as prices rise, confirming that higher costs — typically driven by taxes — effectively reduce consumption. The close estimates from both the OLS and IV models strengthen this conclusion, suggesting the relationship is consistent and reliable. The first-stage results also confirm that taxes play a key role in driving price changes, making them a valid instrument for measuring demand elasticity. In short, this evidence supports the idea that raising cigarette taxes is a practical strategy for discouraging smoking.
+
+For question 7, these results show that when cigarette prices go up, people buy fewer cigarettes. Both the OLS and IV models tell us pretty much the same thing, meaning the connection between price and sales is clear. The IV model is a bit weaker, which just means it's harder to perfectly separate price changes from other factors. The first-stage results show that taxes really do push prices up, and that higher prices lead to lower cigarette use. In simple terms, raising cigarette taxes is a good way to help reduce smoking.
+
+# Question 9 
+
+Repeat questions 1-3 focusing on the period from 1991 to 2015.
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(broom)
+library(knitr)
+
+df <- df %>%
+  mutate(
+    log_sales = log(sales_per_capita),
+    log_cost = log(price_cpi),
+    tax_cpi = tax_state * (230 / index),
+    total_tax_cpi = tax_dollar * (230 / index),
+    log_total_tax = log(total_tax_cpi)
+  )
+
+# Regressions for 1991–2015
+ols_model_91_15 <- lm(log_sales ~ log_cost, data = df %>% filter(Year >= 1991 & Year <= 2015))
+first_stage_91_15 <- lm(log_cost ~ log_total_tax, data = df %>% filter(Year >= 1991 & Year <= 2015))
+iv_model_91_15 <- lm(log_sales ~ predict(first_stage_91_15), data = df %>% filter(Year >= 1991 & Year <= 2015))
+
+# Extract results
+ols_result_91_15 <- tidy(ols_model_91_15) %>%
+  filter(term == "log_cost") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(ols_model_91_15)$r.squared, Model = "OLS")
+
+iv_result_91_15 <- tidy(iv_model_91_15) %>%
+  filter(term == "predict(first_stage_91_15)") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(iv_model_91_15)$r.squared, Model = "IV")
+
+first_stage_result_91_15 <- tidy(first_stage_91_15) %>%
+  filter(term == "log_total_tax") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(first_stage_91_15)$r.squared, Model = "First Stage")
+
+# Combine into table
+results_table_91_15 <- bind_rows(ols_result_91_15, iv_result_91_15, first_stage_result_91_15) %>%
+  select(Model, estimate, std.error, R2) %>%
+  rename(
+    `Log Price Estimate` = estimate,
+    `Standard Error` = std.error,
+    `R²` = R2
+  ) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 4)))
+
+# Display table
+knitr::kable(
+  results_table_91_15,
+  format = "simple",
+  caption = "Regression Results: Log Price Estimates, Standard Errors, and R² (1991–2015)"
+)
+```
+### Figure 6: OLS, IV, and First Stage Regression (1991-2015)
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(broom)
+library(knitr)
+
+# First stage regression
+first_stage_91_15 <- lm(log_cost ~ log_total_tax, data = df %>% filter(Year >= 1991 & Year <= 2015))
+# Second stage regression
+price_hat_91_15 <- predict(first_stage_91_15)
+second_stage_91_15 <- lm(log_sales ~ price_hat_91_15, data = df %>% filter(Year >= 1991 & Year <= 2015))
+
+# Extract results
+first_stage_result <- tidy(first_stage_91_15) %>%
+  filter(term == "log_total_tax") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(first_stage_91_15)$r.squared, Model = "First Stage")
+
+second_stage_result <- tidy(second_stage_91_15) %>%
+  filter(term == "price_hat_91_15") %>%
+  select(estimate, std.error) %>%
+  mutate(R2 = summary(second_stage_91_15)$r.squared, Model = "Second Stage (IV)")
+
+# Combine results into a single table
+iv_results_table <- bind_rows(first_stage_result, second_stage_result) %>%
+  select(Model, estimate, std.error, R2) %>%
+  rename(
+    `Log Price Estimate` = estimate,
+    `Standard Error` = std.error,
+    `R²` = R2
+  ) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 4)))
+
+# Display with knitr
+knitr::kable(
+  iv_results_table,
+  format = "simple",
+  caption = "First and Second Stage Regression Results: Log Price Estimates, Standard Errors, and R² (1991–2015)"
+)
+```
+### Figure 7: First and Second Stage Regression (1991-2015)
+
+# Question 10 
+
+Compare your elasticity estimates from 1970-1990 versus those from 1991-2015. Are they different? If so, why?
+
+The elasticity estimates between 1970–1990 and 1991–2015 are noticeably different. In the 1970–1990 period, the OLS and IV estimates are smaller, showing that people’s cigarette buying habits didn’t change as much when prices went up. This could be because there were fewer public health campaigns and less awareness about the dangers of smoking. By 1991–2015, the estimates are larger, meaning people became much more sensitive to price changes. This change likely comes from stronger anti-smoking laws, higher taxes, and a growing social push against smoking. The higher R² values in the later period also suggest that price had a bigger influence on cigarette sales, and the models did a better job explaining the changes. Overall, this shift shows that policies became more effective over time in reducing cigarette consumption by making smoking more expensive.
